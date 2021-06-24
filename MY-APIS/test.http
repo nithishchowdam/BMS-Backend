@@ -11,7 +11,7 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-    "id":2021000,
+    "id":20210001,
     "password":"gP5rSE"
 }
 
@@ -55,4 +55,18 @@ Content-Type: application/json
 
 {
     "balance":40003
+}
+
+###
+POST http://localhost:3000/user/register
+Content-Type: application/json
+
+{
+    "username":"Summet Pandey",
+    "email":"sumeet3365@gmail.com",
+    "address":"4-77 # hyderabad",
+    "dob":"11-dec-2001",
+    "phoneno":9897969504,
+    "aadharno":123456789012,
+    "panno":"ABCDE12345"
 }
