@@ -1,0 +1,58 @@
+POST http://localhost:3000/admin/login
+Content-Type: application/json
+
+{
+    "id":202109,
+    "password":"3209"
+}
+
+###
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+{
+    "id":2021000,
+    "password":"gP5rSE"
+}
+
+###
+GET http://localhost:3000/admin/getuserslist
+
+###
+PUT http://localhost:3000/admin/updateuser/20210001
+Content-Type: application/json
+
+{
+    "custname":"Nithish Kumar",
+    "custaddress":"chinthal ,Hyderabad",
+    "custmobileno":9246799937,
+    "custdob":"02-jan-2001",
+    "custemail":"chnithish@2001"
+}
+
+###
+DELETE http://localhost:3000/admin/deleteaccount/20210001
+Content-Type: application/json
+
+{
+    "id":20210001
+}
+
+###
+GET http://localhost:3000/admin/getbalance/20210001
+
+###
+PUT http://localhost:3000/admin/updatebalance/20210001
+Content-Type: application/json
+
+{
+    "balance":40001
+}
+
+###
+PUT http://localhost:3000/user/updatebalance/20210001
+Content-Type: application/json
+
+{
+    "balance":40003
+}
