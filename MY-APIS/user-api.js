@@ -24,13 +24,9 @@ oracledb.getConnection(
         //gettig data from api
         loginObj=req.body;
         inputId=loginObj.id
-        console.log(inputId)
         inputPassword=loginObj.password;
         //retreviewing the password respected to the username received
         let userList =await userDataBase.execute(`SELECT custpassword from customer where custid=${inputId}`)
-        let userList1 =await userDataBase.execute(`SELECT custdob from customer`)
-        console.log(userList1)
-        console.table(userList)
         //if it returns empty array then invalid id 
         if(userList.rows.length==0){
             res.send({message:"Invalid Id"})
@@ -49,14 +45,28 @@ oracledb.getConnection(
     //updating balance after transactions
     userApi.put("/updatebalance/:id",expressErrorHandler(async (req,res)=>{
         updateId=req.params.id;
-        updatedBalance=req.body.balance
+        updatedBalance=req.body.balance;
         //updating balance in account table
-        console.log(await userDataBase.execute(`select accbal from account where custid=${updateId}`))
-        await userDataBase.execute(`update account set accbal=${updatedBalance} where custid=${updateId}`)
-        console.log(await userDataBase.execute(`select accbal from account where custid=${updateId}`))
+        await userDataBase.execute(`update account set accbal=${updatedBalance} where custid=${updateId}`);
+        res.send({message:"Updated Successfully"})
     }))
 
+    //account registration by the user
+    userApi.post("/register",expressErrorHandler(async(req,res)=>{
+        let newRegister=req.body;
+        console.log(newRegister)
+        //adding the registered details in register table 
+        await userDataBase.execute(`insert into register values
+           ('${newRegister.username}',
+            '${newRegister.email}',
+            '${newRegister.address}',
+            '${newRegister.dob}',
+            ${newRegister.phoneno},
+            ${newRegister.aadharno},
+            '${newRegister.panno}')`)
+        res.send({message:"Registered Successfully"})
 
+    }))
 
 
 

@@ -30,7 +30,6 @@ oracledb.getConnection(
         inputPassword=loginObj.password;
         //retreviewing the password respected to the username received
         let adminAuth =await adminDataBase.execute(`SELECT password from admin where adminid=${inputId}`)
-        console.table(adminAuth)
         //if it returns empty array then invalid id 
         if(adminAuth.rows.length==0){
             res.send({message:"Invalid Id"})
@@ -48,21 +47,17 @@ oracledb.getConnection(
 
     //get request for users list from admin
     adminApi.get("/getuserslist",expressErrorHandler( async(req,res)=>{
-        let usersList= await adminDataBase.execute("select custname,custaddress,custmobileno,custdob,custemail,accno,accbal,status from customer,account where customer.custid=account.custid");
+        let usersList= await adminDataBase.execute("select custname,custaddress,custmobileno,custdob,custemail,accno,accbal,custaadharno,custpanno,status from customer,account where customer.custid=account.custid");
         res.send({message:usersList})
-        console.log(" list ",usersList)
     }))
 
     
     //updating userdetails by admin
     adminApi.put("/updateuser/:id",expressErrorHandler(async(req,res)=>{
-        let id=(+req.params.id)
-        console.log(id)
+        let id=(+req.params.id);
         let updateObj=req.body;
         let custName=updateObj.custname,custAddress=updateObj.custaddress,custDob=updateObj.custdob,custPhone=updateObj.custmobileno,custEmail=updateObj.custemail;
         await adminDataBase.execute(`update customer set custdob='${custDob}',custName='${custName}',custaddress='${custAddress}',custmobileno='${custPhone}',custemail='${custEmail}' where custid=${id}`);
-        let temp=await adminDataBase.execute(`select * from customer where custid=${id}`);
-        console.log(temp)
         res.send({message:"Updated Successfully"})
     }))
 
