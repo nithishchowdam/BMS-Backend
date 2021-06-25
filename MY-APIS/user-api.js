@@ -61,11 +61,10 @@ oracledb.getConnection(
             '${newRegister.email}',
             '${newRegister.address}',
             '${newRegister.dob}',
-            ${newRegister.phoneno},
-            ${newRegister.aadharno},
+            '${newRegister.phoneno}',
+            '${newRegister.aadharno}',
             '${newRegister.panno}')`)
         res.send({message:"Registered Successfully"})
-
     }))
 
 
