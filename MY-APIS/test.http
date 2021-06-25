@@ -70,3 +70,25 @@ Content-Type: application/json
     "aadharno":123456789012,
     "panno":"ABCDE12345"
 }
+
+###
+POST http://localhost:3000/admin/createaccount/usersrequest
+Content-Type: application/json
+
+{
+    "aadharno":555511112222
+}
+
+###
+POST http://localhost:3000/admin/createaccount/adminrequest
+Content-Type: application/json
+
+{
+    "username":"Summet Pandey",
+    "email":"sumeet3365@gmail.com",
+    "address":"4-77 # hyderabad",
+    "dob":"11-dec-2001",
+    "phoneno":9897969504,
+    "aadharno":123456789012,
+    "panno":"ABCDE12345"
+}
